@@ -59,8 +59,11 @@ function startWrite(){
 document.getElementById("write").onclick = startWrite;
 
 //if WriteDone change color
+//근데 지멋대로 re:로딩 되버려서 이거 필요가없어요!!!
+/*
 chrome.runtime.onMessage.addListener((msg, sender, sendRes) =>{
     if(msg == 'WriteDone') {
         document.getElementById("write").style.backgroundColor = "rgb(186, 174, 214)";
     }
 })
+*/

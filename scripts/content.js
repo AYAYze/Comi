@@ -12,14 +12,30 @@ let data = fetch('http://localhost:80/comments/', {
 });
 
 
+function createBox(pos){
+    let newDiv = document.createElement("div");
+    let newContent = document.createTextNode("대충 작성중~");
+    newDiv.appendChild(newContent);
+    newDiv.style.position = "absolute";
+    newDiv.style.left = pos.x + "px";
+    newDiv.style.top = pos.y + "px";
+    
+
+
+    return newDiv;
+}
+
 //Write Community content
 function writeStart(event) {
     console.log(event.pageX, event.pageY);
-
+    let xy = {
+        x : event.pageX,
+        y : event.pageY
+    }
+    document.body.appendChild(createBox(xy));
 
     //Remove Event 
     document.body.removeEventListener("click", writeStart, true);
-
     //다시 키면 리로딩되는듯.
     //chrome.runtime.sendMessage('WriteDone');
 }
