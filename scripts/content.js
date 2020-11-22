@@ -22,11 +22,10 @@ chrome.runtime.onMessage.addListener((message,sender) => {
     } else if(message.switch == true) {
         console.log(message.switch, "시작합니다.");
     }
-    
     //쓰기
     if(message.write == true) {
-        console.log('ON');
-        document.body.addEventListener("click", setXY, false);
+        document.body.removeEventListener("click", setXY)
+        document.body.addEventListener("click", setXY);
     }
 });
 
