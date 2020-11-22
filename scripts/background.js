@@ -53,7 +53,7 @@ function startWrite(){
     chrome.tabs.query({active: true, currentWindow: true}, function(tabs){
         chrome.tabs.sendMessage(tabs[0].id, {write: true});
     });
-    
+
     document.getElementById("write").style.backgroundColor = "red";
 }
 document.getElementById("write").onclick = startWrite;
