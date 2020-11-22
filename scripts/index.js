@@ -1,3 +1,8 @@
+import createBox from './doms/createBox.js';
+import uploadBox from './doms/uploadBox.js';
+import tools from './doms/tools.js';
+import upload from './util/upload.js';
+
 let data = fetch('http://localhost:80/comments/', {
     method: 'POST',
     headers:{
@@ -12,24 +17,6 @@ let data = fetch('http://localhost:80/comments/', {
 });
 
 
-function createBox(pos){
-    //Create Element & Set element's attributes
-    let newDiv = document.createElement("input");
-    //let newContent = document.createTextNode("대충 작성중~");
-    //newDiv.appendChild(newContent);
-    newDiv.placeholder = "글을 작성해주세요";
-
-
-    //Style
-    newDiv.style.position = "absolute";
-    newDiv.style.left = pos.x + "px";
-    newDiv.style.top = pos.y + "px";
-    newDiv.style.width = "200px";
-    newDiv.style.fontSize = "15px";
-
-
-    return newDiv;
-}
 
 //Write Community content
 function writeStart(event) {
@@ -40,16 +27,22 @@ function writeStart(event) {
     }
     
     let dom = createBox(xy);
-    document.body.appendChild(dom);
-    dom.focus();
     
+    let container = document.createElement("div");
+    container.style.height="500px"
+    document.body.appendChild(container);
+    let shadow = container.attachShadow({mode: 'closed'});
 
-    
+    container.appendChild(dom);
+    container.appendChild(uploadBox(xy, dom));
+    dom.focus();
+
+
     //Remove Event 
     document.body.removeEventListener("click", writeStart, true);
-    //다시 키면 리로딩되는듯.
-    //chrome.runtime.sendMessage('WriteDone');
 }
+
+
 
 chrome.runtime.onMessage.addListener((message,sender) => {
     //Start or Shutdown Program
