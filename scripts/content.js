@@ -13,13 +13,19 @@ let data = fetch('http://localhost:80/comments/', {
 
 
 function createBox(pos){
-    let newDiv = document.createElement("div");
-    let newContent = document.createTextNode("대충 작성중~");
-    newDiv.appendChild(newContent);
+    //Create Element & Set element's attributes
+    let newDiv = document.createElement("input");
+    //let newContent = document.createTextNode("대충 작성중~");
+    //newDiv.appendChild(newContent);
+    newDiv.placeholder = "글을 작성해주세요";
+
+
+    //Style
     newDiv.style.position = "absolute";
     newDiv.style.left = pos.x + "px";
     newDiv.style.top = pos.y + "px";
-    
+    newDiv.style.width = "200px";
+    newDiv.style.fontSize = "15px";
 
 
     return newDiv;
@@ -32,8 +38,13 @@ function writeStart(event) {
         x : event.pageX,
         y : event.pageY
     }
-    document.body.appendChild(createBox(xy));
+    
+    let dom = createBox(xy);
+    document.body.appendChild(dom);
+    dom.focus();
+    
 
+    
     //Remove Event 
     document.body.removeEventListener("click", writeStart, true);
     //다시 키면 리로딩되는듯.
