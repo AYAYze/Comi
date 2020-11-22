@@ -18,7 +18,7 @@ function writeStart(event) {
 
 
     //Remove Event 
-    document.body.removeEventListener("click", writeStart);
+    document.body.removeEventListener("click", writeStart, true);
 
     //다시 키면 리로딩되는듯.
     //chrome.runtime.sendMessage('WriteDone');
