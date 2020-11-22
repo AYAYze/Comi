@@ -11,21 +11,31 @@ let data = fetch('http://localhost:80/comments/', {
     console.log(json.ang);
 });
 
-function setXY(event) {
+
+//Write Community content
+function writeStart(event) {
     console.log(event.pageX, event.pageY);
-    document.body.removeEventListener("click", setXY)
+
+
+    //Remove Event 
+    document.body.removeEventListener("click", writeStart);
+
+    //다시 키면 리로딩되는듯.
+    //chrome.runtime.sendMessage('WriteDone');
 }
 
 chrome.runtime.onMessage.addListener((message,sender) => {
+    //Start or Shutdown Program
     if(message.switch == false) {
         console.log(message.switch, "종료합니다.");
     } else if(message.switch == true) {
         console.log(message.switch, "시작합니다.");
     }
-    //쓰기
+
+    //Writing
     if(message.write == true) {
-        document.body.removeEventListener("click", setXY)
-        document.body.addEventListener("click", setXY);
+        document.body.removeEventListener("click", writeStart)
+        document.body.addEventListener("click", writeStart,true);
     }
 });
 
