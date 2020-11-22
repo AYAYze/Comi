@@ -1,7 +1,7 @@
 import createBox from './doms/createBox.js';
 import uploadBox from './doms/uploadBox.js';
 import tools from './doms/tools.js';
-import upload from './util/upload.js';
+
 
 let data = fetch('http://localhost:80/comments/', {
     method: 'POST',
@@ -33,8 +33,8 @@ function writeStart(event) {
     document.body.appendChild(container);
     let shadow = container.attachShadow({mode: 'closed'});
 
-    container.appendChild(dom);
-    container.appendChild(uploadBox(xy, dom));
+    shadow.appendChild(dom);
+    shadow.appendChild(uploadBox(xy, dom));
     dom.focus();
 
 

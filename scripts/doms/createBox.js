@@ -11,6 +11,8 @@ function createBox(pos){
     newDiv.style.top = pos.y + "px";
     newDiv.style.width = "200px";
     newDiv.style.fontSize = "15px";
+    newDiv.style.border = "none";
+    newDiv.style.padding = "5px";
 
 
     return newDiv;
