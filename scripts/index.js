@@ -1,22 +1,17 @@
 import createBox from './doms/createBox.js';
 import uploadBox from './doms/uploadBox.js';
 import tools from './doms/tools.js';
+import getPost from './util/getPost.js';
 
 
-let data = fetch('http://localhost:80/comments/', {
-    method: 'POST',
-    headers:{
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({pageUrl: document.location.href})
-}).then(res =>
-    res.json()
-).then(json => {
-    console.log(json.ang);
-});
 
+//Create Shadow Dom
+let container = document.createElement("div");
+container.style.height="500px"
+document.body.appendChild(container);
+let shadow = container.attachShadow({mode: 'closed'});
 
+getPost(shadow);
 
 //Write Community content
 function writeStart(event) {
@@ -28,12 +23,9 @@ function writeStart(event) {
     
     let dom = createBox(xy);
     
-    let container = document.createElement("div");
-    container.style.height="500px"
-    document.body.appendChild(container);
-    let shadow = container.attachShadow({mode: 'closed'});
-
+    //Write Box
     shadow.appendChild(dom);
+    //Upload Box
     shadow.appendChild(uploadBox(xy, dom));
     dom.focus();
 

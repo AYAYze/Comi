@@ -3,7 +3,24 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import sqlite from 'sqlite3';
 
-const db = new sqlite.Database('./db/post.db');
+
+const db = new sqlite.Database('./db/post.db', err=>{
+    if (err) {
+        return console.error(err.message);
+    }
+
+    console.log('Connected db');
+});
+const tableName = "POST";
+//DB Initializing
+db.run(`CREATE TABLE IF NOT EXISTS ${tableName}(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    pageUrl TEXT,
+    txt TEXT,
+    x INTEGER,
+    y INTEGER
+)`)
+
 
 const app = express();
 const PORT = 80;
@@ -11,21 +28,45 @@ const PORT = 80;
 app.use(cors({
     origin: '*'
 }));
+
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(express.json());
 
 app.post('/comments/', (req, res) => {
-    console.log(req.body);
-    res.json({
-        ang: '잉잉옹앙앙 뭐 어쩌라공'
-    });
+    
+    db.run(`INSERT INTO ${tableName} (pageUrl, txt, x, y) VALUES (
+        "${req.body.pageUrl}", 
+        "${req.body.txt}", 
+        ${req.body.x}, 
+        ${req.body.y}
+    )`)
 });
 
-app.post('/', (req, res) =>{
-    console.log('d')
-})
+
+class sqlType {
+    public txt : string;
+    public x : number;
+    public y : number;
+}
+
+app.post('/getpost/', (req, res) =>{
+    let url = req.body.pageUrl;
+    let result:sqlType[] = [];
+    db.all(`SELECT txt,x,y FROM ${tableName} WHERE pageUrl = "${url}"`, (err,rows) =>{
+        if(err) return;
+        rows.forEach(row => {
+            result.push({
+                txt: row["txt"],
+                x: row["x"],
+                y: row["y"]
+            });
+        })
+        res.json({
+            data: result
+        })
+    })
+
+
+});
 
 app.listen(PORT);
-
-// 이제 JSON 구문 해석기를 달면 댐
-// 됫다~ ..? tsconfig module es6으로 바꿈.k,, 그ㅕ러ㅕㅁㄴ..
