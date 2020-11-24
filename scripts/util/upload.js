@@ -7,7 +7,7 @@ function upload(text,pos){
         },
         body: JSON.stringify(
             {
-            pageUrl: document.location.href,
+            pageUrl: document.location.hostname + document.location.pathname,
             txt: text,
             x: pos.x,
             y: pos.y,

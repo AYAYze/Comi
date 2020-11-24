@@ -4,7 +4,7 @@
     "version" : "0.1.0",
 
     "default_locale" : "ko",
-    "description": "언제든지 코미로 소통하세요!",
+    "description": "어느 사이트에서든 코미로 소통하세요!",
     "browser_action":{
         "default_icon":{
             "16":"icons/16.png"

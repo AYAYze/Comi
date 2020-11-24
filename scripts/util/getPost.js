@@ -9,7 +9,7 @@ function getPost(shadow) {
         },
         body: JSON.stringify(
             {
-            pageUrl: document.location.href
+            pageUrl: document.location.hostname + document.location.pathname
             }
         )
     }).then(res =>
@@ -26,11 +26,3 @@ function getPost(shadow) {
 }
 
 export default getPost;
-
-// getPost().forEach(posts =>{
-//     let xy = {
-//         x: posts.x,
-//         y: posts.y
-//     }
-//     postDom(posts.txt, xy);
-// });

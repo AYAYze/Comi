@@ -1,27 +1,7 @@
 //SWITCH ON / OFF
 let status = true;
 
-/*
-chrome.browserAction.onClicked.addListener((tabs)=>{
-    status = !status;
-    chrome.tabs.sendMessage(tabs.id ,{switch:status});
-    if(!status) 
-        chrome.browserAction.setIcon({
-            path : {
-                "16":"../icons/16_gray.png"
-            }
-        });
-    else if(status)
-        chrome.browserAction.setIcon({
-            path : {
-                "16":"../icons/16.png"
-            }
-        });
-})
-//
-
-*/
-
+//Shutdown and Message to Content Scripts
 function shutdown(){
     chrome.tabs.query({active: true, currentWindow: true}, function(tabs){
         status = !status;
@@ -46,7 +26,6 @@ function shutdown(){
     
 }
 document.getElementById("shutdown").onclick = shutdown;
-
 
 
 function startWrite(){
