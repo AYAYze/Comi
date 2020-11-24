@@ -1,7 +1,7 @@
 import postDom from '../doms/postDom.js';
 
 function getPost(shadow) {
-    let data = fetch('http://comi.kro.kr:80/getpost/', {
+    let data = fetch('https://comi.kro.kr:80/getpost/', {
         method: 'POST',
         headers:{
             'Accept': 'application/json',

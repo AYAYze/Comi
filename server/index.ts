@@ -2,6 +2,13 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import sqlite from 'sqlite3';
+import fs from 'fs';
+import https from 'https';
+
+const options = {
+    key: fs.readFileSync('./comi.kro.kr/private.key'),
+    cert: fs.readFileSync('./comi.kro.kr/certificate.crt')
+}; 
 
 
 const db = new sqlite.Database('./db/post.db', err=>{
@@ -31,7 +38,6 @@ app.use(cors({
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(express.json());
-
 app.post('/comments/', (req, res) => {
     
     db.run(`INSERT INTO ${tableName} (pageUrl, txt, x, y) VALUES (
@@ -69,4 +75,5 @@ app.post('/getpost/', (req, res) =>{
 
 });
 
-app.listen(PORT);
+const server = https.createServer(options, app);
+server.listen(PORT);

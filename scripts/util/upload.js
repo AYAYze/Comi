@@ -1,5 +1,5 @@
 function upload(text,pos){
-    let data = fetch('http://comi.kro.kr:80/comments/', {
+    let data = fetch('https://comi.kro.kr:80/comments/', {
         method: 'POST',
         headers:{
             'Accept': 'application/json',
