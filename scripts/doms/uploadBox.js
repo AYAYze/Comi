@@ -11,6 +11,7 @@ function uploadBox(pos, textbox,shadow){
         upload(textbox.value, pos)
         getPost(shadow);
         upBox.remove();
+        textbox.remove();
     }
 
     let width = 55;

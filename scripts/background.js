@@ -1,6 +1,4 @@
 
-
-
 //SWITCH ON / OFF
 let status = true;
 
