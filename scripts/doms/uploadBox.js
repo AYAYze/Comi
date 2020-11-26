@@ -1,13 +1,16 @@
 import upload from '../util/upload.js';
+import getPost from '../util/getPost.js';
 
-function uploadBox(pos, textbox){
+function uploadBox(pos, textbox,shadow){
     let upBox = document.createElement("button");
+    upBox.id = "upBox";
     let newContent = document.createTextNode("작성완료");
     upBox.appendChild(newContent);
+
     upBox.onclick = ()=> {
-        upload(textbox.value, pos )
-        upBox.style.display = "none";
-        textbox.disabled = true;
+        upload(textbox.value, pos)
+        getPost(shadow);
+        upBox.remove();
     }
 
     let width = 55;
@@ -17,9 +20,6 @@ function uploadBox(pos, textbox){
     upBox.style.top = pos.y + "px";
     upBox.style.width = width + "px";
     upBox.style.height = height + "px";
-    upBox.style.backgroundColor = "#82e8e5";
-    upBox.style.fontSize = "10px";
-    upBox.style.border = "none";
 
     return upBox;
 }

@@ -1,15 +1,19 @@
-import createBox from './doms/createBox.js';
+import createWriteBox from './doms/createWriteBox.js';
 import uploadBox from './doms/uploadBox.js';
 import tools from './doms/tools.js';
 import getPost from './util/getPost.js';
-
+import styleDom from './util/style.js';
 
 
 //Create Shadow Dom
 let container = document.createElement("div");
 container.style.height="500px"
+container.style.position = "absolute";
+container.style.top = "0px";
+container.style.left = "0px";
 document.body.appendChild(container);
 let shadow = container.attachShadow({mode: 'closed'});
+shadow.appendChild(styleDom());
 
 getPost(shadow);
 
@@ -21,12 +25,12 @@ function writeStart(event) {
         y : event.pageY
     }
     
-    let dom = createBox(xy);
+    let dom = createWriteBox(xy);
     
     //Write Box
     shadow.appendChild(dom);
     //Upload Box
-    shadow.appendChild(uploadBox(xy, dom));
+    shadow.appendChild(uploadBox(xy, dom,shadow));
     dom.focus();
 
 
@@ -48,6 +52,10 @@ chrome.runtime.onMessage.addListener((message,sender) => {
     if(message.write == true) {
         document.body.removeEventListener("click", writeStart)
         document.body.addEventListener("click", writeStart,true);
+    }
+
+    if(message.reload == true){
+        getPost(shadow);
     }
 });
 

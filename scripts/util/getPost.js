@@ -1,4 +1,5 @@
 import postDom from '../doms/postDom.js';
+import tools from '../doms/tools.js';
 
 function getPost(shadow) {
     let data = fetch('https://comi.kro.kr:80/getpost/', {
@@ -20,7 +21,9 @@ function getPost(shadow) {
                 x: posts.x,
                 y: posts.y
             }
-            shadow.appendChild(postDom(posts.txt, xy));
+            let dom = postDom(posts.txt, xy);
+            shadow.appendChild(dom);
+            shadow.appendChild(tools(xy, dom));
         })
     });
 }
