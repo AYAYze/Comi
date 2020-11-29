@@ -1,5 +1,5 @@
-import upload from '../util/upload.js';
-import getPost from '../util/getPost.js';
+import upload from '../util/upload';
+import getPost from '../util/getPost';
 
 function uploadBox(pos, textbox,shadow){
     let upBox = document.createElement("button");

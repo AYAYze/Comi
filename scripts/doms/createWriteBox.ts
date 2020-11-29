@@ -1,4 +1,9 @@
-function createWriteBox(pos){
+interface pos {
+    x: number,
+    y: number
+}
+
+function createWriteBox(pos : pos){
     //Create Element & Set element's attributes
     let newDiv = document.createElement("input");
 

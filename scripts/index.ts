@@ -1,8 +1,8 @@
-import createWriteBox from './doms/createWriteBox.js';
-import uploadBox from './doms/uploadBox.js';
-import tools from './doms/tools.js';
-import getPost from './util/getPost.js';
-import styleDom from './util/style.js';
+import createWriteBox from './doms/createWriteBox';
+import uploadBox from './doms/uploadBox';
+import tools from './doms/tools';
+import getPost from './util/getPost';
+import styleDom from './util/style';
 
 
 //Create Shadow Dom
@@ -19,7 +19,6 @@ getPost(shadow);
 
 //Write Community content
 function writeStart(event) {
-    console.log(event.pageX, event.pageY);
     let xy = {
         x : event.pageX,
         y : event.pageY
@@ -39,8 +38,8 @@ function writeStart(event) {
 }
 
 
-
-chrome.runtime.onMessage.addListener((message,sender) => {
+let swit = true;
+chrome.runtime.onMessage.addListener((message,sender,sendResponse) => {
     //Start or Shutdown Program
     if(message.switch == false) {
         console.log(message.switch, "종료합니다.");
@@ -56,6 +55,12 @@ chrome.runtime.onMessage.addListener((message,sender) => {
 
     if(message.reload == true){
         getPost(shadow);
+    }
+
+    if(message.swit == true){
+        swit = !swit;
+        sendResponse(swit);
+        
     }
 });
 

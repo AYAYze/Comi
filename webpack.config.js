@@ -2,15 +2,27 @@
 const nodeExternals = require("webpack-node-externals");
 
 module.exports = {
-    entry : `${__dirname}/scripts/index.js`,
+    entry : { 
+        content: `${__dirname}/scripts/index.ts`,
+        background : `${__dirname}/scripts/background.ts`
+    },
     output:{
         path: `${__dirname}/scripts/dist`,
-        filename: 'content.js'
+        filename: '[name].js'
     },
     resolve:{
         extensions: ['.ts','.js']
     },
-    module : {
+    module: {
+        rules: [
+          {
+            test: /\.tsx?$/,
+            use: 'ts-loader',
+            exclude: /node_modules/,
+          },
+        ],
     },
+    node: { __dirname:false },
+    devtool: 'cheap-module-source-map',
     externals: [nodeExternals()]
 }

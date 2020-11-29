@@ -1,8 +1,9 @@
-import postDom from '../doms/postDom.js';
-import tools from '../doms/tools.js';
+import postDom from '../doms/postDom';
+import tools from '../doms/tools';
+import address from './address'
 
 function getPost(shadow) {
-    let data = fetch('https://comi.kro.kr:80/getpost/', {
+    let data = fetch(address + ':80/getpost/', {
         method: 'POST',
         headers:{
             'Accept': 'application/json',

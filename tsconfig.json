@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+      "rootDir": "./scripts/",
+      "module": "commonjs",
+      "target": "es6",
+      "esModuleInterop": true,
+      "allowSyntheticDefaultImports": true,
+    },
+    "include": [
+      "./scripts/**/*"
+    ],
+    "types":[
+      "chrome"
+    ]
+  }
