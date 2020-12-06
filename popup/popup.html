@@ -3,27 +3,35 @@
     <meta charset="UTF-8">
 
     <style>
-        input[type="button"]{
+        #container {
+            display:flex;
+            justify-content: center;
+            flex-direction: column;
+        }
+        #container input[type="button"]{
             border:none;
             background-color: rgb(186, 174, 214);
             color:white;
             padding:5px;
-            margin: 5px;
+            margin: 10px;
             display:block;
+            height: 30px;
         }
         #title {
             font-size: 25px;
+            text-align:center;
+            margin-bottom: 10px;
         }
     </style>
 </head>
 <body> 
 <div id="title"> Comi </div>
-
-<input type="button" value="글쓰기" id="write">
-<input type="button" value="새로고침" id="reload">
-<input type="button" value="끄기" id="shutdown">
-<input type="range" min="0" max="50" id="exhibition">
-
+<div id="container">
+    <input type="button" value="글쓰기" id="write">
+    <input type="button" value="새로고침" id="reload">
+    <input type="button" value="끄기" id="shutdown">
+    <input type="range" min="0" max="50" id="exhibition">
+</div>
 
 <script src="../scripts/dist/background.js"></script>
 </body>

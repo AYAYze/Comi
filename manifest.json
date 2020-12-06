@@ -1,7 +1,7 @@
 {
     "manifest_version": 2,
     "name" : "Comi",
-    "version" : "0.1.0",
+    "version" : "0.2.0",
 
     "default_locale" : "ko",
     "description": "어느 사이트에서든 코미로 소통하세요!",
