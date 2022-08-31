@@ -58,9 +58,11 @@ chrome.runtime.onMessage.addListener((message,sender,sendResponse) => {
     }
 
     if(message.swit == true){
-        swit = !swit;
+        swit = !swit;     
+        console.log(swit);
         sendResponse(swit);
-        
     }
+    
+    return true;
 });
 

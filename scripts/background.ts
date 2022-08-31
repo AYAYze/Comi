@@ -4,6 +4,7 @@ import messageSend from './background/messageSend';
 
 //true면 켜지고 false 면 꺼집니다.
 document.getElementById("shutdown").onclick = (()=>{
+    
     messageSend(true,true, {swit:true}, (data)=>{
         if(!data) {
             shutdown(false)
@@ -13,7 +14,6 @@ document.getElementById("shutdown").onclick = (()=>{
         }
     })
 });
-
 
 function startWrite(){
     chrome.tabs.query({active: true, currentWindow: true}, function(tabs){

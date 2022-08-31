@@ -10,7 +10,7 @@ function upload(text,pos){
         min: date.getUTCMinutes(),
         mili : date.getUTCMilliseconds()
     };
-    console.log(JSON.stringify(jsonDate))
+    
     let data = fetch(address + ':80/comments/', {
         method: 'POST',
         headers:{
