@@ -9,7 +9,9 @@ function createWriteBox(pos : pos){
 
     newDiv.placeholder = "글을 작성해주세요";
     newDiv.id = "writeBox";
-
+    newDiv.addEventListener('keydown', e=>{
+        e.stopPropagation();
+    });
 
     //Style
     newDiv.style.position = "absolute";
